@@ -11,7 +11,8 @@
     "clean": "gulp clean",
     "test": "gulp test"
   },
-  "dependencies": {
+  "dependencies": {    
+    "react-m-365-componentslibrary": "0.0.1",
     "react": "16.8.5",
     "react-dom": "16.8.5",
     "office-ui-fabric-react": "6.214.0",
