@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "m-365-components-library-sample-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/m365ComponentsLibrarySample/M365ComponentsLibrarySampleWebPart.js",
+          "manifest": "./src/webparts/m365ComponentsLibrarySample/M365ComponentsLibrarySampleWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "M365ComponentsLibrarySampleWebPartStrings": "lib/webparts/m365ComponentsLibrarySample/loc/{locale}.js"
+  }
+}

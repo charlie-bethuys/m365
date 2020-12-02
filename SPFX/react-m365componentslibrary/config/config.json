@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "m-365-components-library": {
+      "components": [
+        {
+          "entrypoint": "./lib/index.js",
+          "manifest": "./src/libraries/m365Components/M365ComponentsLibrary.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "M365ComponentsLibraryStrings": "lib/libraries/m365Components/loc/{locale}.js"
+  }
+}

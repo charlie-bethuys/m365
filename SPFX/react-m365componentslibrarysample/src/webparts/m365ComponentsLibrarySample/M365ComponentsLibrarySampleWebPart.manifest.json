@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "3fe60bf4-ced8-4aea-8fc2-6661be94e51b",
+  "alias": "M365ComponentsLibrarySampleWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart"],
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Other" },
+    "title": { "default": "M365ComponentsLibrarySample" },
+    "description": { "default": "Composant de test de la librairie M365ComponentsLibrary" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "M365ComponentsLibrarySample"
+    }
+  }]
+}
