@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DefaultButton, PrimaryButton, StackItem, Checkbox, Panel, PanelType, SearchBox, Stack } from '@fluentui/react';
+import { DefaultButton, PrimaryButton, StackItem, Checkbox, Panel, PanelType, SearchBox, Stack, IconButton, CommandBarButton } from '@fluentui/react';
 import { M365ComponentsLibrary, PropertyType } from '../M365ComponentsLibrary';
 import styles from './FilterPanel.module.scss';
 
@@ -111,9 +111,12 @@ const PropertyFilterPanel: React.FunctionComponent<IFilterPanelProps> = (props: 
                     </Stack>
                 </StackItem>
                 <StackItem>
-                    <Stack horizontal horizontalAlign={"start"} className={styles.buttonsRow}>
+                    <Stack horizontal horizontalAlign={"center"} className={styles.buttonsRow}>
                         <PrimaryButton text={"Appliquer"} onClick={onApplySelectedFilterValues} />
                         <DefaultButton text={"Effacer tout"} onClick={onRemoveSelectedFilterValues} />
+                    </Stack>
+                    <Stack horizontal horizontalAlign={"center"}>
+                        <DefaultButton text={"Fermer"} onClick={props.onDismissed} />
                     </Stack>
                 </StackItem>
             </Stack>

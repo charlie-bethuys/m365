@@ -218,14 +218,16 @@ const AdvancedDetailsList: React.FunctionComponent<IAdvancedDetailsListProps> = 
         const contextualMenuItems = [];
         const isFiltered = state.view.filteredBy.filter(filteredByItem => filteredByItem.property === field.fieldName).length > 0;
         const sortBy = state.view.sortedBy.filter(sortedByItem => sortedByItem.property === field.fieldName);
+        const isSorted = sortBy.length > 0;
+        const isSortedDescending = sortBy.length > 0 && sortBy[0].isSortedDescending;
         const isGrouped = state.view.groupedBy.filter(groupedByItem => groupedByItem.fieldName === field.fieldName).length > 0;
-        if (!props.disableSortBy) {
+        if (!props.disableSortBy && (field.isSortable == null || field.isSortable)) {
             contextualMenuItems.push({
                 key: 'sortAsc',
                 name: 'Ordre croissant',
                 iconProps: { iconName: "SortUp" },
-                canCheck: !(sortBy.length > 0 && !sortBy[0].isSortedDescending) ? true : false,
-                checked: (sortBy.length > 0 && !sortBy[0].isSortedDescending) ? true : false,
+                canCheck: isSorted && isSortedDescending ? true : false,
+                checked: !(isSorted && isSortedDescending) ? true : false,
                 onClick: () => {
                     onSortField(field, false);
                 }
@@ -234,14 +236,14 @@ const AdvancedDetailsList: React.FunctionComponent<IAdvancedDetailsListProps> = 
                 key: 'sortDesc',
                 name: 'Ordre décroissant',
                 iconProps: { iconName: "SortDown" },
-                canCheck: !(sortBy.length > 0 && sortBy[0].isSortedDescending) ? true : false,
-                checked: (sortBy.length > 0 && sortBy[0].isSortedDescending) ? true : false,
+                canCheck: !(isSorted && isSortedDescending) ? true : false,
+                checked: isSorted && isSortedDescending ? true : false,
                 onClick: () => {
                     onSortField(field, true);
                 }
             });
         }
-        if (!props.disableFilterBy) {
+        if (!props.disableFilterBy && (field.isFilterable == null || field.isFilterable)) {
             contextualMenuItems.push({
                 key: 'filterBy',
                 name: 'Filtrer par ' + field.displayName,
@@ -252,12 +254,22 @@ const AdvancedDetailsList: React.FunctionComponent<IAdvancedDetailsListProps> = 
                     onFilterByField(field);
                 }
             });
+            if (isFiltered) {
+                contextualMenuItems.push({
+                    key: 'clearFilterBy',
+                    name: 'Effacer les filtres',
+                    iconProps: { iconName: "ClearFilter" },
+                    onClick: () => {
+                        onPropertyFilterChange(field.fieldName, null);
+                    }
+                });
+            }
         }
-        if (!props.disableGroupBy) {
+        if (!props.disableGroupBy && (field.isGroupable == null || field.isGroupable)) {
             contextualMenuItems.push({
                 key: 'groupBy',
                 name: 'Regrouper par ' + field.displayName,
-                iconProps: { iconName: "GroupedDescending" },
+                iconProps: { iconName: isSorted && isSortedDescending ? "GroupedDescending" : "GroupedAscending" },
                 canCheck: true,
                 checked: isGrouped,
                 onClick: () => {
